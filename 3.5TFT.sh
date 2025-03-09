@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # LCD display driver installation script for 3.5inch RPi Display
