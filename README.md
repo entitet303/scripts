@@ -1,20 +1,40 @@
 # scripts
 
-Sample shell scripts used for system setup.
+Collection of shell scripts for system setup on Debian-based systems.
 
-## Root Login
+These steps assume you are running inside a **privileged Debian container** on Proxmox VE.
 
-Run `enable_root.sh` to enable the root account via SSH:
+## Getting Started
 
-```bash
-sudo chmod +x enable_root.sh && sudo ./enable_root.sh
-```
+1. Clone or download this repository inside your container.
+2. Change into the repository directory:
+   ```bash
+   cd scripts
+   ```
 
-## NVIDIA Driver Installation
+## Tutorial
 
-Use `install_nvidia_rtx2060.sh` inside a privileged Debian container to install the NVIDIA drivers:
+### 1. Enable root login
 
-```bash
-sudo chmod +x install_nvidia_rtx2060.sh && sudo ./install_nvidia_rtx2060.sh
-```
+1. Make the script executable:
+   ```bash
+   chmod +x enable_root.sh
+   ```
+2. Run the script with root privileges to set the root password and allow root SSH login:
+   ```bash
+   sudo ./enable_root.sh
+   ```
+
+### 2. Install NVIDIA drivers for an RTX 2060
+
+1. Make sure GPU passthrough is configured for your container.
+2. Make the driver script executable:
+   ```bash
+   chmod +x install_nvidia_rtx2060.sh
+   ```
+3. Execute the script as root to install the required packages and drivers:
+   ```bash
+   sudo ./install_nvidia_rtx2060.sh
+   ```
+4. Reboot the container after installation.
 
