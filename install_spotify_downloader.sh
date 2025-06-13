@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Bitte als root ausführen (sudo)."
+    exit 1
+fi
+
 TARGET_DIR="/data/musik/spotify"
 SPOTIFY_PLAYLIST_URL="https://open.spotify.com/playlist/66XWH87z74Mf9I18bBtMlK?si=4eece16fd3dd4644"
 

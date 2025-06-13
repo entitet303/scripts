@@ -125,3 +125,24 @@ Alternatively you can clone the whole repository:
    wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/monitor.py -O monitor.py
    python3 monitor.py
    ```
+
+### 7. Set up Private Internet Access (VPN)
+
+To run the `setup_pia.sh` script inside a Debian container on Proxmox, enable
+`keyctl` and `nesting` features and allow access to `/dev/net/tun` first:
+
+```bash
+pct set <CTID> -features keyctl=1,nesting=1
+echo "lxc.cgroup2.devices.allow: c 10:200 rwm" >> /etc/pve/lxc/<CTID>.conf
+echo "lxc.mount.entry = /dev/net/tun dev/net/tun none bind,create=file" >> /etc/pve/lxc/<CTID>.conf
+```
+
+Replace `<CTID>` with your container ID and reboot the container afterwards.
+
+Then download and run the script:
+
+```bash
+wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/setup_pia.sh -O setup_pia.sh
+chmod +x setup_pia.sh
+sudo ./setup_pia.sh
+```

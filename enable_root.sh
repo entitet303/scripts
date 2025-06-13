@@ -2,6 +2,12 @@
 
 set -e
 
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Bitte als root ausführen (sudo)."
+    exit 1
+fi
+
 if [[ "$1" == "undo" ]]; then
     echo "Root-Login wird deaktiviert..."
     if [ -f /etc/ssh/sshd_config.bak ]; then

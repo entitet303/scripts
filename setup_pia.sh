@@ -3,6 +3,12 @@
 # Stoppe bei Fehler
 set -e
 
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Bitte als root ausführen (sudo)."
+    exit 1
+fi
+
 # Variablen
 PIA_USER="p5786431"
 PIA_PASS="Fent96308642."
