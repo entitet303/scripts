@@ -6,7 +6,19 @@ These steps assume you are running inside a **privileged Debian container** on P
 
 ## Getting Started
 
-1. Clone or download this repository inside your container.
+The scripts can be run directly from the web without cloning the repository. Download a script with `wget` and execute it:
+
+```bash
+wget https://raw.githubusercontent.com/<USER>/<REPO>/main/<SCRIPT> -O <SCRIPT>
+chmod +x <SCRIPT>
+sudo ./<SCRIPT>
+```
+
+Replace `<SCRIPT>` with the name of the script you wish to run, e.g. `enable_root.sh`.
+
+Alternatively you can clone the whole repository:
+
+1. Clone this repository inside your container.
 2. Change into the repository directory:
    ```bash
    cd scripts
@@ -16,8 +28,9 @@ These steps assume you are running inside a **privileged Debian container** on P
 
 ### 1. Enable root login
 
-1. Make the script executable:
+1. Download the script and make it executable:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/enable_root.sh -O enable_root.sh
    chmod +x enable_root.sh
    ```
 2. Run the script with root privileges to set the root password and allow root SSH login:
@@ -28,8 +41,9 @@ These steps assume you are running inside a **privileged Debian container** on P
 ### 2. Install NVIDIA drivers for an RTX 2060
 
 1. Make sure GPU passthrough is configured for your container.
-2. Make the driver script executable:
+2. Download the driver script and make it executable:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/install_nvidia_rtx2060.sh -O install_nvidia_rtx2060.sh
    chmod +x install_nvidia_rtx2060.sh
    ```
 3. Execute the script as root to install the required packages and drivers:
@@ -40,8 +54,9 @@ These steps assume you are running inside a **privileged Debian container** on P
 
 ### 3. Install 3.5" TFT display drivers
 
-1. Give the script permission to run:
+1. Download the script and make it executable:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/3.5TFT.sh -O 3.5TFT.sh
    chmod +x 3.5TFT.sh
    ```
 2. Execute it as root to install the LCD drivers and reboot:
@@ -51,8 +66,9 @@ These steps assume you are running inside a **privileged Debian container** on P
 
 ### 4. Configure the Raspberry Pi as an access point
 
-1. Make the script executable:
+1. Download the script and make it executable:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/piap.sh -O piap.sh
    chmod +x piap.sh
    ```
 2. Run the script as root. It installs required packages, configures `hostapd` and `dnsmasq`, then reboots:
@@ -62,8 +78,9 @@ These steps assume you are running inside a **privileged Debian container** on P
 
 ### 5. Mount a CIFS share
 
-1. Make the script executable:
+1. Download the script and make it executable:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/smb.sh -O smb.sh
    chmod +x smb.sh
    ```
 2. Run it as root and provide the share information when prompted:
@@ -77,7 +94,8 @@ These steps assume you are running inside a **privileged Debian container** on P
    ```bash
    sudo apt-get install -y python3-pygame python3-psutil
    ```
-2. Start the monitor using Python:
+2. Download the script and start the monitor:
    ```bash
+   wget https://raw.githubusercontent.com/<USER>/<REPO>/main/monitor.py -O monitor.py
    python3 monitor.py
    ```
