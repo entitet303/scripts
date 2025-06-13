@@ -105,7 +105,7 @@ Alternatively you can clone the whole repository:
    wget https://raw.githubusercontent.com/entitet303/scripts/main/mount_share.sh -O mount_share.sh
    chmod +x mount_share.sh
    ```
-2. Run it as root and follow the prompts:
+2. Run it as root and follow the prompts. The script installs `cifs-utils` and `nfs-common` automatically:
    ```bash
    sudo ./mount_share.sh
    ```
