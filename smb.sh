@@ -1,6 +1,14 @@
 #!/bin/bash
 
-# Benutzer-Eingaben
+# Benutzer-Eingaben oder Undo
+if [[ "$1" == "undo" ]]; then
+    read -p "Mount-Punkt der entfernt werden soll: " MOUNT_POINT
+    sed -i \"\\#$MOUNT_POINT#d\" /etc/fstab
+    umount "$MOUNT_POINT" 2>/dev/null || true
+    echo "Eintrag entfernt."
+    exit 0
+fi
+
 read -p "Geben Sie die CIFS-Freigabe ein (z.B. //192.168.2.50/jellyfin): " SHARE
 read -p "Geben Sie den Mount-Punkt ein (z.B. /data): " MOUNT_POINT
 read -p "Geben Sie den Benutzernamen ein: " USERNAME

@@ -6,8 +6,24 @@
 # Exit on error
 set -e
 
+if [[ "$1" == "undo" ]]; then
+    echo "Entferne Access-Point-Konfiguration..."
+    systemctl stop hostapd dnsmasq || true
+    systemctl disable hostapd dnsmasq || true
+    [ -f /etc/dnsmasq.conf.orig ] && mv /etc/dnsmasq.conf.orig /etc/dnsmasq.conf
+    rm -f /etc/hostapd/hostapd.conf
+    [ -f /etc/network/interfaces.bak ] && mv /etc/network/interfaces.bak /etc/network/interfaces
+    rm -f /etc/sysctl.d/routed-ap.conf
+    iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE || true
+    rm -f /etc/iptables.ipv4.nat
+    apt purge -y hostapd dnsmasq || true
+    apt autoremove -y
+    echo "Access Point wurde entfernt."
+    exit 0
+fi
+
 # Check if running as root
-if [ "$EUID" -ne 0 ]; then 
+if [ "$EUID" -ne 0 ]; then
     echo "Please run as root (sudo)"
     exit 1
 fi
@@ -46,6 +62,9 @@ dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
 EOF
 
 # Configure network interfaces
+if [ -f /etc/network/interfaces ] && [ ! -f /etc/network/interfaces.bak ]; then
+    cp /etc/network/interfaces /etc/network/interfaces.bak
+fi
 cat > /etc/network/interfaces << EOF
 source-directory /etc/network/interfaces.d
 
