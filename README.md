@@ -9,7 +9,7 @@ These steps assume you are running inside a **privileged Debian container** on P
 The scripts can be run directly from the web without cloning the repository. Download a script with `wget` and execute it:
 
 ```bash
-wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/<SCRIPT> -O <SCRIPT>
+wget https://raw.githubusercontent.com/entitet303/scripts/<SCRIPT> -O <SCRIPT>
 chmod +x <SCRIPT>
 sudo ./<SCRIPT>
 ```
@@ -36,7 +36,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/enable_root.sh -O enable_root.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/enable_root.sh -O enable_root.sh
    chmod +x enable_root.sh
    ```
 2. Run the script with root privileges to set the root password and allow root SSH login:
