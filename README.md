@@ -53,7 +53,7 @@ Alternatively you can clone the whole repository:
 1. Make sure GPU passthrough is configured for your container.
 2. Download the driver script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/install_nvidia_rtx2060.sh -O install_nvidia_rtx2060.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/install_nvidia_rtx2060.sh -O install_nvidia_rtx2060.sh
    chmod +x install_nvidia_rtx2060.sh
    ```
 3. Execute the script as root to install the required packages and drivers:
@@ -70,7 +70,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/3.5TFT.sh -O 3.5TFT.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/3.5TFT.sh -O 3.5TFT.sh
    chmod +x 3.5TFT.sh
    ```
 2. Execute it as root to install the LCD drivers and reboot:
@@ -86,7 +86,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/piap.sh -O piap.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/piap.sh -O piap.sh
    chmod +x piap.sh
    ```
 2. Run the script as root. It installs required packages, configures `hostapd` and `dnsmasq`, then reboots:
@@ -102,7 +102,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/mount_share.sh -O mount_share.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/mount_share.sh -O mount_share.sh
    chmod +x mount_share.sh
    ```
 2. Run it as root and follow the prompts. The script installs `cifs-utils` and `nfs-common` automatically:
@@ -122,6 +122,6 @@ Alternatively you can clone the whole repository:
    ```
 2. Download the script and start the monitor:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/debian-scripts/monitor.py -O monitor.py
+   wget https://raw.githubusercontent.com/entitet303/scripts/monitor.py -O monitor.py
    python3 monitor.py
    ```
