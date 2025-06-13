@@ -16,6 +16,12 @@ sudo ./<SCRIPT>
 
 Replace `<SCRIPT>` with the name of the script you wish to run, e.g. `enable_root.sh`.
 
+All shell scripts accept an optional `undo` argument to revert the changes:
+
+```bash
+sudo ./<SCRIPT> undo
+```
+
 Alternatively you can clone the whole repository:
 
 1. Clone this repository inside your container.
@@ -37,6 +43,10 @@ Alternatively you can clone the whole repository:
    ```bash
    sudo ./enable_root.sh
    ```
+   To revert this change later run:
+   ```bash
+   sudo ./enable_root.sh undo
+   ```
 
 ### 2. Install NVIDIA drivers for an RTX 2060
 
@@ -49,6 +59,10 @@ Alternatively you can clone the whole repository:
 3. Execute the script as root to install the required packages and drivers:
    ```bash
    sudo ./install_nvidia_rtx2060.sh
+   ```
+   To remove the drivers later run:
+   ```bash
+   sudo ./install_nvidia_rtx2060.sh undo
    ```
 4. Reboot the container after installation.
 
@@ -63,6 +77,10 @@ Alternatively you can clone the whole repository:
    ```bash
    sudo ./3.5TFT.sh
    ```
+   To remove the drivers and restore the previous configuration:
+   ```bash
+   sudo ./3.5TFT.sh undo
+   ```
 
 ### 4. Configure the Raspberry Pi as an access point
 
@@ -75,17 +93,25 @@ Alternatively you can clone the whole repository:
    ```bash
    sudo ./piap.sh
    ```
+   To remove the access point configuration run:
+   ```bash
+   sudo ./piap.sh undo
+   ```
 
-### 5. Mount a CIFS share
+### 5. Mount a network share (SMB or NFS)
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/main/smb.sh -O smb.sh
-   chmod +x smb.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/main/mount_share.sh -O mount_share.sh
+   chmod +x mount_share.sh
    ```
-2. Run it as root and provide the share information when prompted:
+2. Run it as root and follow the prompts:
    ```bash
-   sudo ./smb.sh
+   sudo ./mount_share.sh
+   ```
+   To unmount a share and remove the fstab entry:
+   ```bash
+   sudo ./mount_share.sh undo
    ```
 
 ### 6. Launch the system monitor

@@ -6,8 +6,19 @@
 # Exit on error
 set -e
 
+if [[ "$1" == "undo" ]]; then
+    echo "Stelle urspr\xC3\xBCngliche Displayeinstellungen wieder her..."
+    if [ -d LCD-show ]; then
+        (cd LCD-show && ./LCD-hdmi)
+    fi
+    [ -f /boot/config.txt.bak ] && mv /boot/config.txt.bak /boot/config.txt
+    [ -f /etc/X11/xorg.conf.d/99-calibration.conf.bak ] && mv /etc/X11/xorg.conf.d/99-calibration.conf.bak /etc/X11/xorg.conf.d/99-calibration.conf
+    echo "Displaytreiber entfernt."
+    exit 0
+fi
+
 # Check if running as root
-if [ "$EUID" -ne 0 ]; then 
+if [ "$EUID" -ne 0 ]; then
     echo "Please run as root (sudo)"
     exit 1
 fi
@@ -26,8 +37,12 @@ cd LCD-show/
 apt-get install -y xinput-calibrator
 
 # Backup original config files
-cp /boot/config.txt /boot/config.txt.bak
-cp /etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d/99-calibration.conf.bak 2>/dev/null || true
+if [ ! -f /boot/config.txt.bak ]; then
+    cp /boot/config.txt /boot/config.txt.bak
+fi
+if [ -f /etc/X11/xorg.conf.d/99-calibration.conf ] && [ ! -f /etc/X11/xorg.conf.d/99-calibration.conf.bak ]; then
+    cp /etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d/99-calibration.conf.bak
+fi
 
 # Install LCD driver
 ./LCD35-show

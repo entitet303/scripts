@@ -6,6 +6,20 @@
 
 set -e
 
+if [[ "$1" == "undo" ]]; then
+    echo "Entferne NVIDIA Treiber..."
+    apt purge -y nvidia-driver || true
+    apt autoremove -y
+    if [ -f /etc/apt/sources.list.bak ]; then
+        mv /etc/apt/sources.list.bak /etc/apt/sources.list
+    else
+        sed -i 's/ contrib non-free//' /etc/apt/sources.list
+    fi
+    apt update
+    echo "NVIDIA Treiber wurden entfernt."
+    exit 0
+fi
+
 # Prüfen, ob das Skript als root ausgeführt wird
 if [ "$EUID" -ne 0 ]; then
     echo "Bitte als root ausführen (sudo)."
@@ -18,6 +32,7 @@ apt update
 # Non-free Repository hinzufügen, falls noch nicht vorhanden
 if ! grep -E 'non-free' /etc/apt/sources.list > /dev/null; then
     echo "Füge non-free Repository hinzu..."
+    cp /etc/apt/sources.list /etc/apt/sources.list.bak
     sed -i '/^deb .* main/ s/$/ contrib non-free/' /etc/apt/sources.list
 fi
 
