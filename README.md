@@ -9,7 +9,7 @@ These steps assume you are running inside a **privileged Debian container** on P
 The scripts can be run directly from the web without cloning the repository. Download a script with `wget` and execute it:
 
 ```bash
-wget https://raw.githubusercontent.com/entitet303/scripts/<SCRIPT> -O <SCRIPT>
+wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/<SCRIPT> -O <SCRIPT>
 chmod +x <SCRIPT>
 sudo ./<SCRIPT>
 ```
@@ -36,7 +36,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/enable_root.sh -O enable_root.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/enable_root.sh -O enable_root.sh
    chmod +x enable_root.sh
    ```
 2. Run the script with root privileges to set the root password and allow root SSH login:
@@ -53,7 +53,7 @@ Alternatively you can clone the whole repository:
 1. Make sure GPU passthrough is configured for your container.
 2. Download the driver script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/install_nvidia_rtx2060.sh -O install_nvidia_rtx2060.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/install_nvidia_rtx2060.sh -O install_nvidia_rtx2060.sh
    chmod +x install_nvidia_rtx2060.sh
    ```
 3. Execute the script as root to install the required packages and drivers:
@@ -70,7 +70,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/3.5TFT.sh -O 3.5TFT.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/3.5TFT.sh -O 3.5TFT.sh
    chmod +x 3.5TFT.sh
    ```
 2. Execute it as root to install the LCD drivers and reboot:
@@ -86,7 +86,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/piap.sh -O piap.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/piap.sh -O piap.sh
    chmod +x piap.sh
    ```
 2. Run the script as root. It installs required packages, configures `hostapd` and `dnsmasq`, then reboots:
@@ -102,7 +102,7 @@ Alternatively you can clone the whole repository:
 
 1. Download the script and make it executable:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/mount_share.sh -O mount_share.sh
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/mount_share.sh -O mount_share.sh
    chmod +x mount_share.sh
    ```
 2. Run it as root and follow the prompts. The script installs `cifs-utils` and `nfs-common` automatically:
@@ -122,6 +122,6 @@ Alternatively you can clone the whole repository:
    ```
 2. Download the script and start the monitor:
    ```bash
-   wget https://raw.githubusercontent.com/entitet303/scripts/monitor.py -O monitor.py
+   wget https://raw.githubusercontent.com/entitet303/scripts/refs/heads/main/monitor.py -O monitor.py
    python3 monitor.py
    ```
